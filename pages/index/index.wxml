@@ -1,0 +1,25 @@
+<view class="container">
+    <!-- 轮播框 -->
+    <view wx:if="{{photosData.length>=4}}" style="width: {{swiperBoxWidth + 'rpx'}}" class="photos__swiper-box">
+        <swiper bindanimationfinish="bindanimationfinish" bindchange="bindchange" circular="{{true}}"
+                duration="{{1000}}" interval="{{interval}}" autoplay="{{true}}" display-multiple-items="{{showNumberItem}}"
+                class="photos__swiper">
+            <block wx:for="{{photosData}}" wx:key="index">
+                <swiper-item catchtouchmove="stopTouchMove">
+                    <view class="photos__item">
+                        <view class="{{item.outAni ? 'fade-out' : ''}} {{item.inAni ? 'scale-in' : ''}} {{item.scale ? 'photos__avatar--scale' : ''}} photos__avatar">
+                            <image class="photos__avatar-img" src="https://user-gold-cdn.xitu.io/2020/1/6/16f786fbd44167e9?imageView2/1/w/180/h/180/q/85/format/webp/interlace/1"></image>
+                            <view style="position: absolute;color: red;z-index: 10;bottom: 0;transform:rotate(180deg);font-size: 36rpx;font-weight: bold;">{{index + 1}}</view>
+                            <view class="{{item.inAni ? 'rotate-in' : ''}} photo__circle"></view>
+                        </view>
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+        <!-- 更多按钮, 遮住第一个 -->
+        <view class="photos__more">
+            <image class="photos__more-img" src="../../assets/images/more.png"></image>
+            <view class="photos__more-block"></view>
+        </view>
+    </view>
+</view>
